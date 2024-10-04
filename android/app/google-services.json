@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "555642680432",
+    "project_id": "pfedb-aab9d",
+    "storage_bucket": "pfedb-aab9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555642680432:android:df5bace03f23dfd73ab0b5",
+        "android_client_info": {
+          "package_name": "com.example.medicalbot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555642680432-tm6cc7kj4n1mrk169q0i3hb0g8etalps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcmPYSLGf5dHaR8PxlXyf5Ykxv1gT5Vq0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "555642680432-tm6cc7kj4n1mrk169q0i3hb0g8etalps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

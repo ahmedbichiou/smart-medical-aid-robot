@@ -1,0 +1,38 @@
+
+               Navigator.push(
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.scale,
+                                    alignment: Alignment.topLeft,
+                                    child: ipchanger(refreshMAIN)));
+            final snackBar = SnackBar(
+             backgroundColor: colorBG,
+          content: Container(
+           
+            height: 130,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              children: [
+                Container(
+                   decoration: new BoxDecoration(
+                     
+        
+        shape: BoxShape.circle,
+      ),
+    child: Icon(Icons.block,color: Colors.white,size:60),
+      height: 70,
+      width: 70,
+                ),
+                Container(height: 20,),
+                Text('Set  connectivity mode to Online ',style: TextStyle(
+    fontSize: 15.0,
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Exo2',
+    color: Color(0xff625B71),),),
+              ],
+            ),),
+          duration: Duration(seconds: 1),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);

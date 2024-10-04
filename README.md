@@ -1,1 +1,0 @@
-# smart-medical-aid-robot

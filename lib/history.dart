@@ -1,0 +1,439 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:medicalbot/Confirmation.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
+import 'package:medicalbot/ip.dart';
+import 'package:intl/intl.dart';
+
+const TextStyle headline2nonBold = TextStyle(
+    fontSize: 20.0,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Exo2',
+    color: Color(0xff625B71));
+const TextStyle headline2nonBoldlittle = TextStyle(
+    fontSize: 17.0,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Exo2',
+    color: Color(0xff625B71));
+
+//------------------------------------------------------------------------------------------------http request area
+
+
+
+
+Future<List<Album3>> fetchHistory() async {
+    final String jsonplaceholderred = "http://" + ip + ":5000/gethistory";
+    final response = await http.get(Uri.parse(jsonplaceholderred));
+    
+
+    if (response.statusCode == 200) {
+      List<dynamic> body = jsonDecode(response.body);
+      List<Album3> history = body
+      .map(
+          (dynamic item) => Album3.fromJson(item),
+        )
+        .toList();
+      return history;
+
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
+    }
+  }
+
+class Album3 {
+final  int  capsuleNumber ;
+final String medicament1 ;
+final String medicament2 ;
+final String medicament3 ;
+final String datemedicament;
+final String username;
+final String usercolor;
+final String medicament1N;
+final String medicament2N;
+final String medicament3N;
+
+
+  
+
+  const Album3({
+   
+    required this.capsuleNumber,
+    required this.medicament1,
+    required this.medicament2,
+    required this.medicament3,
+    required this.datemedicament,
+    required this.username,
+    required this.usercolor,
+    required this.medicament1N,
+    required this.medicament2N,
+    required this.medicament3N,
+    
+  });
+
+  factory Album3.fromJson(Map<String, dynamic> json) {
+    return Album3(
+     
+      capsuleNumber: json['capsuleNumber'],
+      medicament1: json['medicament1'],
+      medicament2: json['medicament2'],
+      medicament3: json['medicament3'],
+      datemedicament: json['datemedicament'],
+      username: json['username'],
+      usercolor: json['usercolor'],
+      medicament1N: json['medicament1N'],
+      medicament2N: json['medicament2N'],
+      medicament3N: json['medicament3N'],
+    );
+  }
+}
+//------------------------------------------------------------------------------------------------http request area
+class history extends StatefulWidget {
+history();
+  @override
+  State<history> createState() => _history();
+}
+
+class _history extends State<history> {
+  Widget build(BuildContext context) {
+    const GrandTitle = TextStyle(
+    fontSize: 30.0,
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Exo2',
+    color: Color(0xff0060ac));
+const cardcolor = const Color(0xfff1efff);
+const colorchoicecard = const Color(0xfff0efff);
+const formcolor = const Color(0xffc1c1ff);
+const colorBG = const Color(0xffFFFFFF); //background
+const colorTOP = Color(0xffBB86FC); //topbar
+const colorbtnBlueGray = Color(0xff3f4ade); //button countour
+const TextStyle headline2little = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.normal,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Exo2',
+    color: Color(0xff625B71));
+const TextStyle headline2grand = TextStyle(
+    fontSize: 25.0,
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Exo2',
+    color: Color(0xff625B71));
+
+//text styles
+const TextStyle headline2petit = TextStyle(
+    fontSize: 15.0,
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Exo2',
+    color: Color(0xff625B71));
+const TextStyle headline2 = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Exo2',
+    color: Color(0xff625B71));
+const TextStyle headline2nonBold = TextStyle(
+    fontSize: 20.0,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Exo2',
+    color: Color(0xff625B71));
+const TextStyle headline2whitepetit = TextStyle(
+    fontSize: 20.0,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Dongle',
+    color: Color(0xffffffff));    
+const TextStyle headline2whitegrand = TextStyle(
+    fontSize: 50.0,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Dongle',
+    color: Color(0xffffffff));
+const TextStyle headline2whitemoyen = TextStyle(
+    fontSize: 30.0,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Dongle',
+    color: Color(0xffffffff));
+const TextStyle headline2whitegrand2 = TextStyle(
+    fontSize: 70.0,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Exo2',
+    color: Color(0xffffffff));
+const TextStyle headline2blackgrand2 = TextStyle(
+    fontSize: 70.0,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Exo2',
+    color: Color(0xff000000));
+
+const TextStyle headline3 = TextStyle(
+    fontSize: 25.0,
+    fontStyle: FontStyle.normal,
+    fontFamily: 'Dongle',
+    color: Color(0xffffffff));
+  SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.white));
+  
+  return AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.dark,
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+           body:   Column(
+             children: [
+
+               Padding(
+                 padding: const EdgeInsets.only(top:30),
+                 child: Row( // medical bot
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: FloatingActionButton(
+                        heroTag: "back",
+                        elevation: 10,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(
+                          Icons.arrow_back_ios_new,
+                          color: Colors.black,
+                          size: 20.0,
+                        ),
+                        backgroundColor: cardcolor,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width/7,
+                    ),
+                    const Text(
+                      'Medical Bot',
+                      style: GrandTitle,
+                    ),
+                  ],), ),
+              Container(height: 20,),
+              Container(
+                padding: EdgeInsets.only(left:10),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(height: 30,child:Text("History",style:headline2grand))),
+              ),
+              
+                    FutureBuilder(
+        future: fetchHistory(),
+        builder: (BuildContext context, AsyncSnapshot<List<Album3>> snapshot) {
+          if (snapshot.hasData) {
+            List<Album3> posts = snapshot.data!;
+            return Expanded(
+              child: ListView(
+                children: posts
+                    .map(
+                      (Album3 post) => Padding(
+                        padding: const EdgeInsets.only(top:10.0),
+                        child: historycard(post.capsuleNumber,post.medicament1,post.medicament2,post.medicament3, post.datemedicament, post.username,post.usercolor,post.medicament1N,post.medicament2N,post.medicament3N),
+                      )
+                    )
+                    .toList(),
+              ),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
+    
+
+              
+             ],
+           ),
+           
+           )
+           
+           
+           );
+  }}
+
+  class historycard extends StatelessWidget {
+  final int capsuleNumber;
+  final String medicament1;
+  final String medicament2;
+  final String medicament3;
+  final String datemedicament;
+  final String username;
+  final String usercolor;
+  final String medicament1N;
+  final String medicament2N;
+  final String medicament3N;
+  historycard(this.capsuleNumber,this.medicament1,this.medicament2,this.medicament3,this.datemedicament,this.username,this.usercolor,this.medicament1N,this.medicament2N,this.medicament3N);
+
+  Widget build(BuildContext context) {
+return Container(
+  padding: EdgeInsets.only(left:10,right: 10),
+  height: 220,
+  width: MediaQuery.of(context).size.width,
+  child:Card(
+    
+    shape: RoundedRectangleBorder(
+    side: BorderSide(color: cardcolor, width: 1),
+    borderRadius: BorderRadius.circular(10),
+  ),
+    elevation: 5,
+    child: Row(
+      children: [
+        Column(
+          children: [
+        
+            Container(
+              padding: EdgeInsets.only(left:10,top:10),
+                //color: Colors.red,
+                height: 100,
+                width: MediaQuery.of(context).size.width/2,
+                child:Card(
+                   shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10), // if you need this
+                  
+                ),
+                        elevation: 2, 
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding:EdgeInsets.all(10),
+                              child: Text("Patient name",style:headline2)),
+                            Container(
+                              padding:EdgeInsets.only(left: 10),
+                            child:Text(username,style: headline2nonBold),),
+                          ],
+                        ),)),
+           Container(
+              padding: EdgeInsets.only(left:10,top:10),
+                //color: Colors.red,
+                height: 100,
+                width: MediaQuery.of(context).size.width/2,
+                child:Card(
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10), // if you need this
+                  
+                ),
+                        elevation: 2,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              
+                              padding:EdgeInsets.all(10),
+                              child: Text("Date and Time",style:headline2)),
+                            Container(
+                              padding:EdgeInsets.only(left: 10),
+                              
+                            child:Text(datemedicament,style: headline2nonBold),),
+                          ],
+                        ),)),
+          ],
+        ),
+       
+        Column(
+            children: [
+            Container(
+                padding: EdgeInsets.only(top:10),
+                    //color: Colors.blueGrey,
+                  height: 70,
+                  width: MediaQuery.of(context).size.width/2.5,
+                  child:Card(
+                     shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // if you need this
+                    
+                  ),
+                    elevation: 2,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                  padding:EdgeInsets.only(left: 10),
+                                  child: Text("Med1",style:headline2)),
+                                  Container(
+                                  padding:EdgeInsets.only(left: 10),
+                                  child: Text("°"+medicament1N,style:headline2)),
+                                ],
+                              ),
+                              Container(
+                                padding:EdgeInsets.only(left: 10),
+                              child:Text(medicament1,style: headline2nonBoldlittle),),
+                            ],
+                          ),)),
+     if(medicament2 !="")       Container(
+                padding: EdgeInsets.only(top:10),
+                    //color: Colors.blueGrey,
+                  height: 70,
+                  width: MediaQuery.of(context).size.width/2.5,
+                  child:Card(
+                     shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // if you need this
+                    
+                  ),
+                    elevation: 2,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                  padding:EdgeInsets.only(left: 10),
+                                  child: Text("Med2",style:headline2)),
+                                  Container(
+                                  padding:EdgeInsets.only(left: 10),
+                                  child: Text("°"+medicament2N,style:headline2)),
+                                ],
+                              ),
+                              Container(
+                                padding:EdgeInsets.only(left: 10),
+                              child:Text(medicament2,style: headline2nonBoldlittle),),
+                            ],
+                          ),)),
+   if(medicament3 !="")       Container(
+                padding: EdgeInsets.only(top:10),
+                    //color: Colors.blueGrey,
+                  height: 70,
+                  width: MediaQuery.of(context).size.width/2.5,
+                  child:Card(
+                     shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // if you need this
+                    
+                  ),
+                    elevation: 2,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                  padding:EdgeInsets.only(left: 10),
+                                  child: Text("Med3",style:headline2)),
+                                  Container(
+                                  padding:EdgeInsets.only(left: 10),
+                                  child: Text("°"+medicament3N,style:headline2)),
+                                ],
+                              ),
+                              Container(
+                                padding:EdgeInsets.only(left: 10),
+                              child:Text(medicament3,style: headline2nonBoldlittle),),
+                            ],
+                          ),)),
+            ],
+          ),
+        
+      ],
+    ),
+  )
+);
+
+  }}
