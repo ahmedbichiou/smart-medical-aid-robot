@@ -1,0 +1,67 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+
+
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
+  SystemUiOverlay.bottom
+]);
+  await Firebase.initializeApp();
+
+  if (shouldUseFirestoreEmulator) {
+    FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+  }
+  runApp(FirstRoute());
+}
+
+
+
+
+
+class GetUserName extends StatelessWidget {
+  final String documentId;
+  final int NumberOfDays;
+  GetUserName(this.documentId,this.NumberOfDays);
+
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference users = FirebaseFirestore.instance.collection('CarData');
+
+    return FutureBuilder<DocumentSnapshot>(
+      future: users.doc(documentId).get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+
+        if (snapshot.hasError) {
+          return Text('Error');
+        }
+
+        if (snapshot.hasData && !snapshot.data!.exists) {
+          return Text('Error');
+        }
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+          var Rent=data['RentPrice'];
+          var Rentint=int. parse(Rent);
+          var resFinal=Rentint*NumberOfDays;
+          var resFinalString= resFinal.toString();
+           return  NumberSlideAnimation(
+            number: resFinalString,
+            duration: const Duration(seconds: 2),
+            curve: Curves.decelerate,
+            textStyle: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Dongle',fontSize:50),
+          );
+         
+        }
+        
+
+        return Text('Error');
+      },
+    );
+  }
+}
