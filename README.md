@@ -26,27 +26,24 @@
 
 
 Main Menu :
+
 ![image](https://github.com/user-attachments/assets/df047c18-0213-46e7-ba21-a8e902e2c59b)
 
 Patient Creation:
+
 ![Screenshot 2024-10-05 185719](https://github.com/user-attachments/assets/a92956d7-6231-4f58-9264-6df4730d1d7f)
 
 Timed capsules management :
+
 ![image](https://github.com/user-attachments/assets/09b10269-2d0f-4b00-88d2-c89f435b9ba9)
 
+Creating a timed capsule :
 
-Online Local Mode :
+![Screenshot 2024-10-05 190012](https://github.com/user-attachments/assets/de3abcdc-b696-4805-9a22-9e9fdc840269)
 
-![image](https://github.com/user-attachments/assets/c1cd5c5c-cfe0-43aa-93cb-6ce6de83de7f)
 
 - **Backend**: Node.js, Express, Flask
 - **Database**: MySQL (MariaDB) for local storage, Firebase for cloud storage
 - **Version Control**: Git
 
-## Installation
-To set up the project locally, follow these steps:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ahmedbichiou/your-repository-name.git
-   cd your-repository-name
