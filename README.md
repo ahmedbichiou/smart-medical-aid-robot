@@ -4,7 +4,7 @@
 
 ## Table of Contents
 - [Features](#features)
-- [Technologies and screenshots](#Technologies and screenshots)
+- [Technologies-and-screenshots](#Technologies-and-screenshots)
 
 
 ![20241005_181842](https://github.com/user-attachments/assets/256a9d4b-1242-40bd-b534-2b1098a935f6)
@@ -16,7 +16,7 @@
 - **Capsule Management**: Update, delete, and empty capsules efficiently.
 - **History Overview**: Keep track of all past delivered medications.
 
-## Technologies and screenshots
+## Technologies-and-screenshots
 - **Mobile Application**: Flutter
 
 
