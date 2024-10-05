@@ -18,7 +18,8 @@
 
 ## Technologies-and-screenshots
 - **Mobile Application**: Flutter
-
+- **Backend**: Node.js, Express, Flask
+- **Database**: MySQL (MariaDB) for local storage, Firebase for cloud storage
 
 Main Menu :
 
@@ -37,7 +38,6 @@ Creating a timed capsule :
 ![Screenshot 2024-10-05 190012](https://github.com/user-attachments/assets/de3abcdc-b696-4805-9a22-9e9fdc840269)
 
 
-- **Backend**: Node.js, Express, Flask
-- **Database**: MySQL (MariaDB) for local storage, Firebase for cloud storage
+
 
 
