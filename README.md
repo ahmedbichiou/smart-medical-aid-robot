@@ -44,6 +44,5 @@ Creating a timed capsule :
 
 - **Backend**: Node.js, Express, Flask
 - **Database**: MySQL (MariaDB) for local storage, Firebase for cloud storage
-- **Version Control**: Git
 
 
