@@ -1,6 +1,6 @@
 # MEDIBOT: Smart Medical Aid Robot
 
-**MEDIBOT** is an innovative robot designed to assist sick and elderly individuals in managing their medication and monitoring vital health metrics. Controlled via a mobile application developed using Flutter, MEDIBOT integrates with a hand bracelet to monitor vital signs such as heartbeat and blood oxygen levels. This project aims to simplify medication delivery and improve patient compliance.
+**MEDIBOT** is an innovative robot designed to assist sick and elderly individuals in managing their medication and monitoring vital health metrics. Controlled via a mobile application developed using Flutter,This project aims to simplify medication delivery and improve patient compliance.
 
 ## Table of Contents
 - [Features](#features)
